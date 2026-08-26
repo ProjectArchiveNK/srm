@@ -9,6 +9,7 @@ const CoffeePage = () => {
       <CoffeeControls />
       <CoffeeTable />
       {/* <CoffeeDashboard /> */}
+      {/* x */}
     </Flex>
   );
 };
