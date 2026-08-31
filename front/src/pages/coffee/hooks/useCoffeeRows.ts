@@ -9,6 +9,9 @@ import {
 import { useState } from "react";
 import type { Dayjs } from "dayjs";
 import type { CoffeeRow } from "../types/coffee";
+import type { Comment } from "../types/coffee";
+import type { EditingRow } from "../types/coffee";
+import type { OperationDraft } from "../types/coffee";
 import { initialRow } from "../constants/initialRow";
 import { message } from "antd";
 import dayjs from "dayjs";
@@ -21,9 +24,9 @@ export const useCoffeeRows = () => {
   const selectedMonthId = useSelector(
     (state: RootState) => state.coffee.selectedMonthId,
   );
-  const [newRow, setNewRow] = useState(initialRow);
+  const [newRow, setNewRow] = useState<EditingRow>(initialRow);
   const [editingRow, setEditingRow] = useState<CoffeeRow | null>(null);
-  const [operationDraft, setOperationDraft] = useState({
+  const [operationDraft, setOperationDraft] = useState<OperationDraft>({
     type: "paid",
     amount: 0,
     text: "",
@@ -150,7 +153,7 @@ export const useCoffeeRows = () => {
   };
 
   // редактирует коментарий
-  const updateComment = async (commentDraft) => {
+  const updateComment = async (commentDraft: Comment) => {
     if (!editingRow) return;
 
     const updatedRow = {

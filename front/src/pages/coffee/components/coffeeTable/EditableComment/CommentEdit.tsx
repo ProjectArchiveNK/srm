@@ -12,8 +12,15 @@ import { CloseOutlined } from "@ant-design/icons";
 import { operationOptions } from "../../../constants/operationOptions";
 import { useState } from "react";
 import dayjs from "dayjs";
+import type { Comment } from "../../../types/coffee";
 
-const EditComment = ({ onList, comment, onSave }) => {
+type Props = {
+  onList: () => void;
+  comment: Comment;
+  onSave: (commentDraft: Comment) => void;
+};
+
+const EditComment = ({ onList, comment, onSave }: Props) => {
   const [commentDraft, setCommentDraft] = useState({
     _id: comment._id,
     amount: comment.amount,

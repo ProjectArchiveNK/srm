@@ -71,7 +71,7 @@ const CoffeeControls = () => {
         onChange={handleMonthChange}
         showSearch={{
           filterOption: (input, option) =>
-            option.label.toLowerCase().includes(input.toLowerCase()),
+            option?.label?.toLowerCase().includes(input.toLowerCase()) ?? false,
         }}
       />
 
@@ -137,7 +137,7 @@ const CoffeeControls = () => {
                         okText="Удалить"
                         description="Неделя будет удалена безвозвратно!"
                         okButtonProps={{ danger: true }}
-                        onConfirm={() => deleteRow(week._id)}
+                        onConfirm={() => deleteRow(week?._id)}
                       >
                         <Button danger size="small" icon={<DeleteOutlined />} />
                       </Popconfirm>
@@ -222,7 +222,7 @@ const CoffeeControls = () => {
                   value={newMonthName}
                   onChange={(e) => setNewMonthName(e.target.value)}
                   onPressEnter={async () => {
-                    if (!newMonthName.trim()) return;
+                    if (!selectedMonthId || !newMonthName.trim()) return;
 
                     await updateMonth(selectedMonthId, newMonthName);
                     setOpen(false);
@@ -233,6 +233,8 @@ const CoffeeControls = () => {
                   size="small"
                   disabled={!newMonthName.trim()}
                   onClick={async () => {
+                    if (!selectedMonthId || !newMonthName.trim()) return;
+
                     await updateMonth(selectedMonthId, newMonthName);
                     setOpen(false);
                   }}

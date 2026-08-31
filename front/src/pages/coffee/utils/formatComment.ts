@@ -1,4 +1,6 @@
-export const formatComment = (comment) => {
+import type { Comment } from "../types/coffee";
+
+export const formatComment = (comment: Comment) => {
   const operationNames = {
     expenses: "Траты",
     paid: "Заплатили",

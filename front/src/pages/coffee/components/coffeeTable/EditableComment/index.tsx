@@ -1,10 +1,24 @@
 import { Button, Flex, Popover, Typography } from "antd";
 import { MessageOutlined, EditOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
-import { useState } from "react";
+import { useState, type Dispatch, type SetStateAction } from "react";
 import CommentList from "./CommentList";
 import AddComment from "./CommentAdd";
 import EditComment from "./CommentEdit";
+import type { CoffeeRow, OperationDraft } from "../../../types/coffee";
+import type { Comment } from "../../../types/coffee";
+
+type Props = {
+  comments: Comment[];
+  record: CoffeeRow;
+  setEditingRow: Dispatch<SetStateAction<CoffeeRow | null>>;
+  operationDraft: OperationDraft;
+  setOperationDraft: Dispatch<SetStateAction<OperationDraft>>;
+  saveComment: () => void;
+  editingRow: CoffeeRow | null;
+  removeComment: (commentId: string) => void;
+  updateComment: (commentDraft: Comment) => Promise<void>;
+};
 
 const EditableComment = ({
   comments,
@@ -16,9 +30,9 @@ const EditableComment = ({
   editingRow,
   removeComment,
   updateComment,
-}) => {
+}: Props) => {
   const [mode, setMode] = useState<"list" | "add" | "edit">("list");
-  const [editingComment, setEditingComment] = useState(null);
+  const [editingComment, setEditingComment] = useState<Comment | null>(null);
 
   return (
     <Flex vertical gap={4} align="flex-start">
@@ -51,7 +65,7 @@ const EditableComment = ({
                 />
               )}
 
-              {mode === "edit" && (
+              {mode === "edit" && editingComment && (
                 <EditComment
                   onList={() => setMode("list")}
                   comment={editingComment}
@@ -60,7 +74,6 @@ const EditableComment = ({
                   }}
                 />
               )}
-
               {mode === "add" && (
                 <AddComment
                   onList={() => setMode("list")}

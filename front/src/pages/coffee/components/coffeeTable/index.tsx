@@ -4,6 +4,8 @@ import { useCoffeeRows } from "../../hooks/useCoffeeRows";
 import EditableNumber from "./EditableNumber";
 import EditableDates from "./EditableDates";
 import EditableComment from "./EditableComment";
+import type { ColumnsType } from "antd/es/table";
+import type { CoffeeRow } from "../../types/coffee";
 
 const CoffeeTable = () => {
   const { months, currentMonth } = useCoffeeMonth();
@@ -21,7 +23,7 @@ const CoffeeTable = () => {
     updateComment,
   } = useCoffeeRows();
 
-  const columns = [
+  const columns: ColumnsType<CoffeeRow> = [
     {
       title: "Число",
       dataIndex: "date",

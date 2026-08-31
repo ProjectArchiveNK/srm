@@ -1,9 +1,7 @@
-import { useCoffeeMonth } from "../../hooks/useCoffeeMonths";
+// import { useCoffeeMonth } from "../../hooks/useCoffeeMonths";
 
 const CoffeeDashboard = () => {
-  const { months } = useCoffeeMonth();
-
-  console.log("CSC:", months);
+  // const { months } = useCoffeeMonth();
 
   return (
     <>

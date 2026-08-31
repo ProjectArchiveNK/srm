@@ -15,8 +15,17 @@ import {
 } from "@ant-design/icons";
 import { formatComment } from "../../../utils/formatComment";
 import dayjs from "dayjs";
+import type { CoffeeRow } from "../../../types/coffee";
+import type { Comment } from "../../../types/coffee";
 
-const CommentList = ({ editingRow, onAdd, onEdit, onDelete }) => {
+type Props = {
+  editingRow: CoffeeRow | null;
+  onAdd: () => void;
+  onEdit: (comment: Comment) => void;
+  onDelete: (commentId: string) => void;
+};
+
+const CommentList = ({ editingRow, onAdd, onEdit, onDelete }: Props) => {
   return (
     <>
       <Flex
@@ -118,7 +127,7 @@ const CommentList = ({ editingRow, onAdd, onEdit, onDelete }) => {
           })}
       </Flex>
 
-      {editingRow?.comment.length > 0 && (
+      {(editingRow?.comment.length ?? 0) > 0 && (
         <Divider style={{ margin: "5px 0" }} />
       )}
 

@@ -11,14 +11,22 @@ import {
 import { CloseOutlined } from "@ant-design/icons";
 import { operationOptions } from "../../../constants/operationOptions";
 import dayjs from "dayjs";
-import { useState } from "react";
+import { useState, type Dispatch, type SetStateAction } from "react";
+import type { OperationDraft } from "../../../types/coffee";
+
+type Props = {
+  onList: () => void;
+  operationDraft: OperationDraft;
+  setOperationDraft: Dispatch<SetStateAction<OperationDraft>>;
+  saveComment: () => void;
+};
 
 const AddComment = ({
   onList,
   operationDraft,
   setOperationDraft,
   saveComment,
-}) => {
+}: Props) => {
   const [pickerValue, setPickerValue] = useState(dayjs());
 
   const handleSave = () => {

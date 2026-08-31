@@ -139,7 +139,7 @@ export const useCoffeeMonth = () => {
     },
   );
 
-  const handleMonthChange = (monthId) => {
+  const handleMonthChange = (monthId: string) => {
     dispatch(setSelectedMonthId(monthId));
 
     const month = months?.find((month) => month._id === monthId);
