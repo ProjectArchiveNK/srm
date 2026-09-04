@@ -177,6 +177,8 @@ const CoffeeTable = () => {
     },
   ];
 
+  console.log(months);
+
   if (!months) return <Spin />;
   return (
     <>
