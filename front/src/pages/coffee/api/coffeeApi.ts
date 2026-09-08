@@ -4,7 +4,7 @@ import type { Month } from "../types/coffee";
 export const coffeeApi = createApi({
   reducerPath: "coffeeApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3000",
+    baseUrl: "https://srm-backend-3a7x.onrender.com",
   }),
   tagTypes: ["Months"],
   endpoints: (builder) => ({
