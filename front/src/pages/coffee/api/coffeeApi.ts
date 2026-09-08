@@ -4,7 +4,8 @@ import type { Month } from "../types/coffee";
 export const coffeeApi = createApi({
   reducerPath: "coffeeApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://srm-backend-3a7x.onrender.com",
+    // baseUrl: "https://srm-backend-3a7x.onrender.com",
+    baseUrl: import.meta.env.VITE_API_URL,
   }),
   tagTypes: ["Months"],
   endpoints: (builder) => ({
